@@ -116,9 +116,6 @@ while True:
 			if count % 100 == 0:
 				log.info(f"Searched {count} streams {stream.viewer_count}")
 
-			if count > 1000:
-				break
-
 		log.debug(f"Searched {count} streams")
 
 		for user_id in list(streams.keys()):
@@ -132,5 +129,4 @@ while True:
 		log.warning("Hit an error in main loop")
 		log.warning(traceback.format_exc())
 
-	break
 	time.sleep(15 * 60)
