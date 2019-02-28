@@ -43,6 +43,8 @@ if 'APPDATA' in os.environ:  # Windows
 	os_config_path = os.environ['APPDATA']
 elif 'XDG_CONFIG_HOME' in os.environ:  # Modern Linux
 	os_config_path = os.environ['XDG_CONFIG_HOME']
+elif 'HOME' in os.environ:  # Legacy Linux
+	os_config_path = os.path.join(os.environ['HOME'], '.config')
 else:
 	log.error("Couldn't find config")
 	sys.exit()
@@ -50,7 +52,7 @@ os_config_path = os.path.join(os_config_path, 'praw.ini')
 config.read(os_config_path)
 
 if CONFIG_SECTION not in config:
-	log.error("Couldn't find config")
+	log.error("Couldn't find config section")
 	sys.exit()
 
 GAME = config[CONFIG_SECTION]['game']
