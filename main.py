@@ -115,9 +115,6 @@ while True:
 
 				streams[stream.user_id] = datetime.utcnow()
 
-			if count % 100 == 0:
-				log.info(f"Searched {count} streams {stream.viewer_count}")
-
 		log.debug(f"Searched {count} streams")
 
 		for user_id in list(streams.keys()):
