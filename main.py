@@ -93,9 +93,14 @@ while True:
 			if found:
 				log.info(f"Found stream {stream.user_name} : {stream.title}")
 				bldr = []
-				bldr.append("<https://www.twitch.tv/")
-				bldr.append(stream.user_name)
-				bldr.append("> | ")
+				if stream.user_name is None or stream.user_name == "":
+					log.warning(f"Stream username for id {stream.user_id} empty")
+					bldr.append("API returned empty username for stream")
+				else:
+					bldr.append("<https://www.twitch.tv/")
+					bldr.append(stream.user_name)
+					bldr.append(">")
+				bldr.append(" | ")
 				bldr.append(stream.title)
 				bldr.append(" | Viewers: ")
 				bldr.append(str(stream.viewer_count))
